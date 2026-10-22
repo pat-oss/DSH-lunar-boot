@@ -1,0 +1,90 @@
+{
+  "name": "dsh-lunar-boot",
+  "version": "1.0.0",
+  "description": "逐月计划开机动画：DSH 启动时播放逐月计划开场影片，定格尾帧后需点击「加入逐月计划」按钮才会进入主界面。",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "src",
+    "scripts",
+    "assets",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "boot-animation",
+    "splash",
+    "lunar-exile",
+    "开机动画",
+    "启动动画",
+    "逐月计划"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "dsh": {
+    "engines": {
+      "dsh": ">=0.2.0-rc.1"
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ],
+      "platform": "web"
+    }
+  },
+  "dshWorkshop": {
+    "schema": "omdsh-workshop-package/v1",
+    "type": "plugin",
+    "integration": {
+      "protocol": "harness-profile",
+      "artifact": "cordis.patch.yml"
+    },
+    "install": {
+      "mode": "transactional",
+      "adapter": "profile-bundle",
+      "failurePolicy": "generation-rollback",
+      "touchesCurrentBeforeActivation": false
+    },
+    "lifecycle": {
+      "activation": "restart-profile",
+      "dispose": "supported"
+    },
+    "permissions": [
+      "web:index-inject",
+      "dom:overlay",
+      "browser:local-storage",
+      "desktop:titlebar-overlay",
+      "web:http-route"
+    ]
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node --check lib/client.js && node --check lib/index.js",
+    "test": "node test-host.mjs"
+  },
+  "dependencies": {}
+}

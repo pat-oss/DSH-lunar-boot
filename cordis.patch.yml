@@ -1,0 +1,8 @@
+# Bundle patch for dsh-lunar-boot.
+#
+# 这一行把插件挂进 profile：只声明 dsh.client 的包装不上（插件市场的提交
+# 门禁会以 "declares only dsh.client — that alone is not installable" 拒绝），
+# bundle 补丁和 client 块缺一不可。行为与 dsh-550c-boot 一致。
+- insert:
+    - id: boot-lunar
+      name: dsh-lunar-boot
