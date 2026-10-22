@@ -52,8 +52,8 @@ dsh plugin --profile web add ./dsh-lunar-boot
 # 或打包好的 tarball
 dsh plugin --profile web add ./dsh-lunar-boot-1.0.0.tgz
 
-# 或从 GitHub Release 直接安装（把 <用户名> 换成实际仓库地址）
-dsh plugin --profile web add https://github.com/<用户名>/dsh-lunar-boot/archive/refs/tags/v1.0.0.tar.gz
+# 或从 GitHub Release 直接安装
+dsh plugin --profile web add https://github.com/pat-oss/dsh-lunar-boot/archive/refs/tags/v1.0.0.tar.gz
 ```
 
 装完同样**重启一次** DSH。升级或重装后按 `Ctrl+Shift+R` 硬刷新（DSH 的客户端 bundle 带 `max-age=31536000`，普通 F5 会一直用第一次抓到的副本）。
